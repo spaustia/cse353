@@ -1,0 +1,29 @@
+<project name="TokenRing">
+    <property name="prop1" value="Number of Nodes in Token Ring" />
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/TokenRing.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile">
+        <java jar="build/jar/TokenRing.jar" fork="true">
+            <sysproperty key="prop1" value="${prop1}"/>
+        </java>
+
+    </target>
+
+</project>
